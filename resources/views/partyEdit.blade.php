@@ -32,12 +32,11 @@
       
     </nav>
     <main>
-      <form action="/parties" method="post">
+      <form action="/parties/{{ $party->id }}" method="post">
         @csrf
+        @method('PATCH')
         <label for="party_name">名前</label>
-        <div class="input-group mb-3">
-          <input id="party_name" name="party_name" type="text" class="form-control" aria-label="名前" aria-describedby="basic-addon1">
-        </div>
+        <input id="party_name" name="party_name" type="text" value="{{ $party->name }}">
         <button type="submit" class="btn btn-primary">保存</button>
       </form>
     </main>

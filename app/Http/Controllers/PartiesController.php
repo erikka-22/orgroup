@@ -67,7 +67,9 @@ class PartiesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('partyEdit', [
+            'party' => Party::findOrFail($id)
+        ]);
     }
 
     /**
@@ -79,7 +81,11 @@ class PartiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $party = Party::find($id);
+        $party->name = $request->party_name;
+        // $member->avatar_path = '';
+        $party->save();
+        return redirect("/parties/{$party->id}");
     }
 
     /**
