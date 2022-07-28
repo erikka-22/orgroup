@@ -1,8 +1,11 @@
 <?php
 
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
+
 use App\Http\Controllers\MembersController;
-use App\Http\Controllers\GroupsController;
+use App\Http\Controllers\PartiesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +18,23 @@ use App\Http\Controllers\GroupsController;
 |
 */
 
+// Route::get('/', function () {
+//     // return Inertia::render('Welcome', [
+//     //     'canLogin' => Route::has('login'),
+//     //     'canRegister' => Route::has('register'),
+//     //     'laravelVersion' => Application::VERSION,
+//     //     'phpVersion' => PHP_VERSION,
+//     // ]);
+//     return view('welcome');
+// });
+
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::resources([
     'members' => MembersController::class,
-    'groups' => GroupsController::class,
+    'parties' => PartiesController::class,
 ]);
+
+// require __DIR__.'/auth.php';

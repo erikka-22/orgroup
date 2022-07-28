@@ -10,8 +10,8 @@ class Member extends Model
     use HasFactory;
 
     // このメンバーが属するグループ
-    public function groups()
+    public function parties()
     {
-        return $this->belongsToMany(Group::class);
+        return $this->belongsToMany(Party::class);
     }
 }

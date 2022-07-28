@@ -14,3 +14,7 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+/resources/js/Components
+/resources/js/Layouts
+/resources/js/Pages
+

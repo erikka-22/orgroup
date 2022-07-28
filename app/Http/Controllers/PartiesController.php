@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class GroupsController extends Controller
+use App\Http\Controllers\Controller;
+use App\Models\Party;
+
+class PartiesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +16,8 @@ class GroupsController extends Controller
      */
     public function index()
     {
-        return view('group.index', [
-            'group' => Group::get()
+        return view('partyIndex', [
+            'parties' => Party::get()
         ]);
     }
 
@@ -25,7 +28,7 @@ class GroupsController extends Controller
      */
     public function create()
     {
-        //
+        return view('partyCreate');
     }
 
     /**
@@ -36,7 +39,11 @@ class GroupsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $party = new Party;
+        $party->name = $request->party_name;
+        $party->avatar_path = '';
+        $party->save();
+        return redirect("parties/{$party->id}");
     }
 
     /**
@@ -47,8 +54,8 @@ class GroupsController extends Controller
      */
     public function show($id)
     {
-        return view('group.profile', [
-            'group' => Group::findOrFail($id)
+        return view('partyProfile', [
+            'party' => Party::findOrFail($id)
         ]);
     }
 
@@ -83,6 +90,8 @@ class GroupsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $party = Party::find($id);
+        $party->delete();
+        return redirect("/parties");
     }
 }

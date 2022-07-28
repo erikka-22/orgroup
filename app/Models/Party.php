@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Group extends Model
+class Party extends Model
 {
     use HasFactory;
 
     // このグループに属するメンバー
-    public function members()
+    public function parties()
     {
-        return $this->belongsToMany(Member::class)
+        return $this->belongsToMany(Member::class);
     }
 }

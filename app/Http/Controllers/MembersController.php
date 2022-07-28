@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Member;
 
 class MembersController extends Controller
 {
@@ -13,8 +15,8 @@ class MembersController extends Controller
      */
     public function index()
     {
-        return view('member.index', [
-            'member' => Group::get()
+        return view('memberIndex', [
+            'members' => Member::get()
         ]);
     }
 
@@ -25,7 +27,7 @@ class MembersController extends Controller
      */
     public function create()
     {
-        //
+        return view('memberCreate');
     }
 
     /**
@@ -36,7 +38,11 @@ class MembersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $member = new Member;
+        $member->name = $request->member_name;
+        $member->avatar_path = '';
+        $member->save();
+        return redirect("/members/{$member->id}");
     }
 
     /**
@@ -47,8 +53,8 @@ class MembersController extends Controller
      */
     public function show($id)
     {
-        return view('member.profile', [
-            'member' => Group::findOrFail($id)
+        return view('memberProfile', [
+            'member' => Member::findOrFail($id)
         ]);
     }
 
@@ -83,6 +89,8 @@ class MembersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $member = Member::find($id);
+        $member->delete();
+        return redirect("/members");
     }
 }
